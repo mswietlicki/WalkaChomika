@@ -12,6 +12,7 @@
  * <http://creativecommons.org/publicdomain/zero/1.0/>. 
  */
 #endregion
+using System.Diagnostics;
 using System.Windows;
 
 namespace WalkaChomika
@@ -21,61 +22,51 @@ namespace WalkaChomika
     /// </summary>
     public partial class MainWindow : Window
     {
+        private object c;
+        private object d;
+
+        /// <summary>
+        /// Konstruktor klasy głównego okienka aplikacji
+        /// </summary>
         public MainWindow()
         {
+            // to jest standardowa metoda ustawiająca komponenty
             InitializeComponent();
+
+            // tutaj się dzieje nieistotna magia - przekierowywany jest strumień informacji testowych
+            // do pola tekstowego w okienku aplikacji
+            TraceListener debugListener = new Ktos.Common.TextBoxTraceListener(tbLog);
+            Debug.Listeners.Add(debugListener);
+
+            // tworzone są nowe instancje walczących zwierzątek
+            this.c = new ChomikSzaman("Pimpuś", 10);         
+            this.d = new Chomik("Lucjan");
         }
 
         /// <summary>
-        /// To jest funkcja, która uruchamia się w momencie kliknięcia przycisku przez użytkownika
+        /// Funkcja obsługująca naciśnięcie przycisku Następnej Tury
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Button_Click(object sender, RoutedEventArgs e)
+        /// <param name="sender">Obiekt, który uruchomił zdarzenie</param>
+        /// <param name="e">Parametry zdarzenia</param>
+        private void NextTurnClick(object sender, RoutedEventArgs e)
         {
-            // tworzymy obiekt klasy Zwierzę, czyli konkretną zmienną
-            // i nadajemy jej atrybuty od razu
-            Zwierzę chomik = new Zwierzę()
+            // jeśli c i d są zwierzętami
+            if (c is Zwierzę && d is Zwierzę)
             {
-                Imię = "Pucuś",
-                HP = 10,
-                Mana = 0,
-                Damage = 1
-            };
+                if (((Zwierzę)c).CzyŻyje() && ((Zwierzę)d).CzyŻyje())
+                {
+                    ((Zwierzę)c).Gryź((Zwierzę)d);
+                    ((Zwierzę)d).Gryź((Zwierzę)c);
 
-            // tworzymy nowy obiekt klasy Zwierzę, a potem nadajemy mu po
-            // kolei wartości jego atrybutów dostając się do każdego po kolei
-            Zwierzę pies = new Zwierzę();
-            pies.Imię = "Dino";
-            pies.HP = 100;
-            pies.Mana = 0;
-            pies.Damage = 10;
-            
-            // robimy sobie zmienną do zliczania ugryzień
-            int i = 0;
-
-            // dopóki chomik żyje
-            while (chomik.CzyŻyje())
-            {
-                // pies gryzie chomika - gryzienie zmniejsza ilość HP obiektu chomik
-                pies.Gryź(chomik);
-
-                // liczymy ugryzienia
-                i++;
+                    Debug.WriteLine(string.Format("Obiekt 1: {0}HP, Obiekt 2: {1}HP", ((Zwierzę)c).HP, ((Zwierzę)d).HP));
+                }
+                else
+                    Debug.WriteLine("Obiekt 1: {0}, Obiekt 2: {1}", ((Zwierzę)c).CzyŻyje(), ((Zwierzę)d).CzyŻyje());
             }
+            else
+                Debug.WriteLine("Co najmniej jedno z zawodników nie jest zwierzęciem.");
 
-            // kiedy chomik umarł, pokazujemy liczbę i w kontrolce o nazwie "kawalekTekstu"
-            kawalekTekstu.Text = i.ToString();
-
-            // i wywołujemy funkcję Test() na klasie MainWindow
-            // powinno się używać this.Test(), ale bez tego też zadziała
-            Test();
-        }
-
-        void Test()
-        {
-            // zmieniamy wartość przezroczystosci kontrolki o nazwie "kawalekTekstu" na 50%
-            kawalekTekstu.Opacity = 0.5;
+            
         }
     }
 }

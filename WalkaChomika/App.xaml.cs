@@ -13,5 +13,6 @@ namespace WalkaChomika
     /// </summary>
     public partial class App : Application
     {
+
     }
 }

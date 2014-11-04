@@ -21,17 +21,34 @@ namespace WalkaChomika
         /// <summary>
         /// To pole jest liczbą, która reprezentuje ile zwierzę ma punktów życia
         /// </summary>
-        public int HP;
+        public int HP { get; set; }
 
         /// <summary>
         /// To pole reprezentuje ilość many zwierzęcia
         /// </summary>
-        public int Mana;
+        public int Mana { get; set; }
 
         /// <summary>
         /// To pole reprezentuje maksymalne obrażenia zadawane przez atak
         /// </summary>
-        public int Damage;
+        public int Damage { get; protected set; }
+
+        public Zwierzę()
+        {
+            this.HP = 10;
+            this.Mana = 0;
+            this.Damage = 5;
+            this.Imię = "BRAK!";
+        }
+
+        public Zwierzę(string imię)
+        {
+            this.HP = 10;
+            this.Mana = 0;
+            this.Damage = 5;
+
+            this.Imię = imię;
+        }
 
         /// <summary>
         /// Ta funkcja zwraca, czy zwierze jeszcze żyje, opierając się na danych z tego samego obiektu.
