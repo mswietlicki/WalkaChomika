@@ -14,54 +14,38 @@
 #endregion
 using System.Diagnostics;
 using System.Windows;
-
+using Ktos.Common;
 namespace WalkaChomika
 {
-    /// <summary>
-    /// To jest klasa odpowiadająca głównemu okienku aplikacji
-    /// </summary>
     public partial class MainWindow : Window
     {
-        private object c;
-        private object d;
+        private readonly object _pimpus;
+        private readonly object _lucjan;
 
-        /// <summary>
-        /// Konstruktor klasy głównego okienka aplikacji
-        /// </summary>
         public MainWindow()
         {
-            // to jest standardowa metoda ustawiająca komponenty
             InitializeComponent();
 
-            // tutaj się dzieje nieistotna magia - przekierowywany jest strumień informacji testowych
-            // do pola tekstowego w okienku aplikacji
-            TraceListener debugListener = new Ktos.Common.TextBoxTraceListener(tbLog);
+            TraceListener debugListener = new TextBoxTraceListener(tbLog);
             Debug.Listeners.Add(debugListener);
 
-            // tworzone są nowe instancje walczących zwierzątek
-            this.c = new ChomikSzaman("Pimpuś", 10);         
-            this.d = new Chomik("Lucjan");
+            _pimpus = new ChomikSzaman("Pimpuś", 10);         
+            _lucjan = new Chomik("Lucjan");
         }
 
-        /// <summary>
-        /// Funkcja obsługująca naciśnięcie przycisku Następnej Tury
-        /// </summary>
-        /// <param name="sender">Obiekt, który uruchomił zdarzenie</param>
-        /// <param name="e">Parametry zdarzenia</param>
         private void NextTurnClick(object sender, RoutedEventArgs e)
         {
-            // jeśli c i d są zwierzętami
-            if (c is Zwierzę && d is Zwierzę)
+            if (_pimpus is Zwierzę && _lucjan is Zwierzę)
             {
-                if (((Zwierzę)c).CzyŻyje() && ((Zwierzę)d).CzyŻyje())
+                if (((Zwierzę)_pimpus).CzyŻyje() && ((Zwierzę)_lucjan).CzyŻyje())
                 {
-                    ((Zwierzę)c).Gryź((Zwierzę)d);
-                    ((Zwierzę)d).Gryź((Zwierzę)c);
+                    ((Zwierzę)_pimpus).Gryź((Zwierzę)_lucjan);
+                    ((Zwierzę)_lucjan).Gryź((Zwierzę)_pimpus);
 
-                    Debug.WriteLine(string.Format("Obiekt 1: {0}HP, Obiekt 2: {1}HP", ((Zwierzę)c).HP, ((Zwierzę)d).HP));
+                    Debug.WriteLine("Obiekt 1: {0}HP, Obiekt 2: {1}HP", ((Zwierzę)_pimpus).HP, ((Zwierzę)_lucjan).HP);
                 }
                 else
-                    Debug.WriteLine("Obiekt 1: {0}, Obiekt 2: {1}", ((Zwierzę)c).CzyŻyje(), ((Zwierzę)d).CzyŻyje());
+                    Debug.WriteLine("Obiekt 1: {0}, Obiekt 2: {1}", ((Zwierzę)_pimpus).CzyŻyje(), ((Zwierzę)_lucjan).CzyŻyje());
             }
             else
                 Debug.WriteLine("Co najmniej jedno z zawodników nie jest zwierzęciem.");

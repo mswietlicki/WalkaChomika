@@ -68,7 +68,6 @@
     </Compile>
     <Compile Include="Chomik.cs" />
     <Compile Include="Dinozaur.cs" />
-    <Compile Include="TextBoxTraceListener.cs" />
     <Compile Include="Zwierzę.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -101,6 +100,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ktos.Common\Ktos.Common.csproj">
+      <Project>{F9E9F5AB-6675-472D-B6CB-7B5DAAD88A32}</Project>
+      <Name>Ktos.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
