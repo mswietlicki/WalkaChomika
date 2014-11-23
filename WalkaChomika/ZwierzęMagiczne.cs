@@ -4,19 +4,12 @@ namespace WalkaChomika
 {
     public class ZwierzęMagiczne : Zwierzę
     {
-        public ZwierzęMagiczne()
-        {
-            HP = 10;
-            Mana = 0;
-            Damage = 5;
-        }
-
         public ZwierzęMagiczne(string imię, int mana)
+            : base(imię)
         {
-            Imię = imię;
             Mana = mana;
         }
-        
+
         public void AtakujMagicznie(Zwierzę z)
         {
             if (Mana <= 0)

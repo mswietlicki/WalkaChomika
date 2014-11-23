@@ -7,12 +7,12 @@ namespace Ktos.Common
     /// <summary>
     /// Class for moving Debug information to simple TextBox
     /// </summary>
-    public class TextBoxTraceListener : TraceListener
+    public sealed class TextBoxTraceListener : TraceListener
     {
         /// <summary>
         /// TextBox, which will be receiving debug information
         /// </summary>
-        private TextBox output;
+        private readonly TextBox _output;
 
         /// <summary>
         /// Creates new instance of TextBoxTraceListener
@@ -20,8 +20,8 @@ namespace Ktos.Common
         /// <param name="output">TextBox which will be receiving Debug information</param>
         public TextBoxTraceListener(TextBox output)
         {
-            this.Name = "Trace";
-            this.output = output;
+            Name = "Trace";
+            _output = output;
         }
 
         /// <summary>
@@ -30,8 +30,8 @@ namespace Ktos.Common
         /// <param name="message">Debug message</param>
         public override void Write(string message)
         {
-            output.AppendText(string.Format("[{0:HH:mm:dd.ff}] ", DateTime.Now));
-            output.AppendText(message);
+            _output.AppendText(string.Format("[{0:HH:mm:dd.ff}] ", DateTime.Now));
+            _output.AppendText(message);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Ktos.Common
         /// <param name="message">Debug message</param>
         public override void WriteLine(string message)
         {
-            this.Write(message + Environment.NewLine);
+            Write(message + Environment.NewLine);
         }
     }
 }

@@ -18,11 +18,8 @@ namespace WalkaChomika
         }
 
         public Zwierzę(string imię)
+            : this()
         {
-            HP = 10;
-            Mana = 0;
-            Damage = 5;
-
             Imię = imię;
         }
 

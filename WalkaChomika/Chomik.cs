@@ -3,8 +3,8 @@
     public class Chomik : Zwierzę
     {
         public Chomik(string imię)
+            : base(imię)
         {
-            this.Imię = imię;
         }
     }
 }
