@@ -19,8 +19,8 @@ namespace WalkaChomika
 {
     public partial class MainWindow : Window
     {
-        private readonly object _pimpus;
-        private readonly object _lucjan;
+        private readonly Zwierzę _pimpus;
+        private readonly Zwierzę _lucjan;
 
         public MainWindow()
         {
@@ -29,28 +29,22 @@ namespace WalkaChomika
             TraceListener debugListener = new TextBoxTraceListener(tbLog);
             Debug.Listeners.Add(debugListener);
 
-            _pimpus = new ChomikSzaman("Pimpuś", 10);         
+            _pimpus = new ChomikSzaman("Pimpuś", 10);
             _lucjan = new Chomik("Lucjan");
         }
 
         private void NextTurnClick(object sender, RoutedEventArgs e)
         {
-            if (_pimpus is Zwierzę && _lucjan is Zwierzę)
+            if (_pimpus.CzyŻyje() && _lucjan.CzyŻyje())
             {
-                if (((Zwierzę)_pimpus).CzyŻyje() && ((Zwierzę)_lucjan).CzyŻyje())
-                {
-                    ((Zwierzę)_pimpus).Gryź((Zwierzę)_lucjan);
-                    ((Zwierzę)_lucjan).Gryź((Zwierzę)_pimpus);
+                _pimpus.Gryź(_lucjan);
+                _lucjan.Gryź(_pimpus);
 
-                    Debug.WriteLine("Obiekt 1: {0}HP, Obiekt 2: {1}HP", ((Zwierzę)_pimpus).HP, ((Zwierzę)_lucjan).HP);
-                }
-                else
-                    Debug.WriteLine("Obiekt 1: {0}, Obiekt 2: {1}", ((Zwierzę)_pimpus).CzyŻyje(), ((Zwierzę)_lucjan).CzyŻyje());
+                Debug.WriteLine("Obiekt 1: {0}HP, Obiekt 2: {1}HP", _pimpus.HP, _lucjan.HP);
             }
-            else
-                Debug.WriteLine("Co najmniej jedno z zawodników nie jest zwierzęciem.");
 
-            
+            if (!_pimpus.CzyŻyje() || !_lucjan.CzyŻyje())
+                Debug.WriteLine("Obiekt 1: {0}, Obiekt 2: {1}", _pimpus.CzyŻyje(), _lucjan.CzyŻyje());
         }
     }
 }
