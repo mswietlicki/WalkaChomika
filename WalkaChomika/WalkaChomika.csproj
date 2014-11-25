@@ -57,6 +57,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ChomikSzaman.cs" />
+    <Compile Include="ILatający.cs" />
+    <Compile Include="Jednorożec.cs" />
     <Compile Include="ZwierzęMagiczne.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
