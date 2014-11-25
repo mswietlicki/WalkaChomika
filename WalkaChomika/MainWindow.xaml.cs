@@ -9,11 +9,12 @@
  *
  * You should have received a copy of the CC0 Public Domain 
  * Dedication along with this software. If not, see 
- * <http://creativecommons.org/publicdomain/zero/1.0/>. 
+ * <http://creativecommons.org/publicdomain/zero/1.0/>.
  */
 #endregion
 using System.Diagnostics;
 using System.Windows;
+using System;
 
 namespace WalkaChomika
 {
@@ -22,8 +23,8 @@ namespace WalkaChomika
     /// </summary>
     public partial class MainWindow : Window
     {
-        private object c;
-        private object d;
+        private Zwierzę gracz1;
+        private Zwierzę gracz2;
 
         /// <summary>
         /// Konstruktor klasy głównego okienka aplikacji
@@ -39,8 +40,8 @@ namespace WalkaChomika
             Debug.Listeners.Add(debugListener);
 
             // tworzone są nowe instancje walczących zwierzątek
-            this.c = new ChomikSzaman("Pimpuś", 10);         
-            this.d = new Chomik("Lucjan");
+            gracz1 = new ChomikSzaman("Pimpuś", 100);
+            gracz2 = new Jednorożec("Rafał", 15);
         }
 
         /// <summary>
@@ -50,23 +51,53 @@ namespace WalkaChomika
         /// <param name="e">Parametry zdarzenia</param>
         private void NextTurnClick(object sender, RoutedEventArgs e)
         {
-            // jeśli c i d są zwierzętami
-            if (c is Zwierzę && d is Zwierzę)
-            {
-                if (((Zwierzę)c).CzyŻyje() && ((Zwierzę)d).CzyŻyje())
-                {
-                    ((Zwierzę)c).Gryź((Zwierzę)d);
-                    ((Zwierzę)d).Gryź((Zwierzę)c);
+            Tura(gracz1, gracz2);
 
-                    Debug.WriteLine(string.Format("Obiekt 1: {0}HP, Obiekt 2: {1}HP", ((Zwierzę)c).HP, ((Zwierzę)d).HP));
-                }
-                else
-                    Debug.WriteLine("Obiekt 1: {0}, Obiekt 2: {1}", ((Zwierzę)c).CzyŻyje(), ((Zwierzę)d).CzyŻyje());
-            }
+            PokażStan();
+
+            Tura(gracz2, gracz1);
+
+            PokażStan();
+
+        }
+
+        private void PokażStan()
+        {
+            if (!gracz1.CzyŻyje() || !gracz2.CzyŻyje())
+                Debug.WriteLine(gracz1.CzyŻyje() ? "Gracz 2" : "Gracz 1");
             else
-                Debug.WriteLine("Co najmniej jedno z zawodników nie jest zwierzęciem.");
+            {
+                Debug.WriteLine(string.Format("Obiekt 1: {0}", gracz1));
+                Debug.WriteLine(string.Format("Obiekt 2: {0}", gracz2));
+            }
+        }
 
-            
+        private void Tura(Zwierzę gracz, Zwierzę gracz2)
+        {
+            Random r = new Random();
+            var w = r.Next(10);
+            var zaatakował = false;
+
+            if (gracz is ZwierzęMagiczne)
+            {
+                if (w >= 7)
+                {
+                    (gracz as ZwierzęMagiczne).AtakujMagicznie(gracz2);
+                    zaatakował = true;
+                }
+            }
+
+            if (gracz is ILatający)
+            {
+                if (w >= 8)
+                {
+                    (gracz as ILatający).Lataj();
+                    zaatakował = true;
+                }
+            }
+
+            if (!zaatakował)
+                gracz.Gryź(gracz2);
         }
     }
 }
