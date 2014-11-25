@@ -12,9 +12,10 @@
  * <http://creativecommons.org/publicdomain/zero/1.0/>.
  */
 #endregion
+using System;
 using System.Diagnostics;
 using System.Windows;
-using System;
+using WalkaChomika.Models;
 
 namespace WalkaChomika
 {

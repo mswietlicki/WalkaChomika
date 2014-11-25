@@ -56,10 +56,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ChomikSzaman.cs" />
-    <Compile Include="ILatający.cs" />
-    <Compile Include="Jednorożec.cs" />
-    <Compile Include="ZwierzęMagiczne.cs" />
+    <Compile Include="Models\ChomikSzaman.cs" />
+    <Compile Include="Models\ILatający.cs" />
+    <Compile Include="Models\Jednorożec.cs" />
+    <Compile Include="Models\ZwierzęMagiczne.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -68,10 +68,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Chomik.cs" />
-    <Compile Include="Dinozaur.cs" />
+    <Compile Include="Models\Chomik.cs" />
+    <Compile Include="Models\Dinozaur.cs" />
     <Compile Include="TextBoxTraceListener.cs" />
-    <Compile Include="Zwierzę.cs" />
+    <Compile Include="Models\Zwierzę.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
