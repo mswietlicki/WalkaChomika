@@ -80,6 +80,8 @@ namespace WalkaChomika
                 Debug.WriteLine(string.Format("Gracz 1: {0}", gracz1));
                 Debug.WriteLine(string.Format("Gracz 2: {0}", gracz2));
             }
+
+            scroll.ScrollToBottom();
         }
 
         private void Tura(Zwierzę gracz, Zwierzę gracz2)
