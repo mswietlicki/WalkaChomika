@@ -45,6 +45,8 @@ namespace WalkaChomika
             gracz2 = new Jednorożec("Rafał", 15);
         }
 
+        private bool _lastGracz = false;
+
         /// <summary>
         /// Funkcja obsługująca naciśnięcie przycisku Następnej Tury
         /// </summary>
@@ -52,24 +54,26 @@ namespace WalkaChomika
         /// <param name="e">Parametry zdarzenia</param>
         private void NextTurnClick(object sender, RoutedEventArgs e)
         {
-            Tura(gracz1, gracz2);
+            if (_lastGracz)
+                Tura(gracz1, gracz2);
+            else
+                Tura(gracz2, gracz1);
 
-            PokażStan();
+            PokażStan();            
 
-            Tura(gracz2, gracz1);
-
-            PokażStan();
-
+            _lastGracz = !_lastGracz;
         }
 
         private void PokażStan()
         {
             if (!gracz1.CzyŻyje() || !gracz2.CzyŻyje())
-                Debug.WriteLine(gracz1.CzyŻyje() ? "Gracz 2" : "Gracz 1");
+            {
+                Debug.WriteLine(gracz1.CzyŻyje() ? gracz1.Imię + " wygrał!" : gracz2.Imię + " wygrał!");
+            }
             else
             {
-                Debug.WriteLine(string.Format("Obiekt 1: {0}", gracz1));
-                Debug.WriteLine(string.Format("Obiekt 2: {0}", gracz2));
+                Debug.WriteLine(string.Format("Gracz 1: {0}", gracz1));
+                Debug.WriteLine(string.Format("Gracz 2: {0}", gracz2));
             }
         }
 
@@ -84,21 +88,26 @@ namespace WalkaChomika
                 if (w >= 7)
                 {
                     (gracz as ZwierzęMagiczne).AtakujMagicznie(gracz2);
+                    Debug.WriteLine(string.Format("{0} zaatakował magicznie {1}!", gracz.Imię, gracz2.Imię));
                     zaatakował = true;
                 }
             }
 
             if (gracz is ILatający)
             {
-                if (w >= 8)
+                if (w >= 8 && !zaatakował)
                 {
                     (gracz as ILatający).Lataj();
+                    Debug.WriteLine(string.Format("{0} odleciał!", gracz.Imię));
                     zaatakował = true;
                 }
             }
 
             if (!zaatakował)
+            {
                 gracz.Gryź(gracz2);
+                Debug.WriteLine(string.Format("{0} ugryzł {1}!", gracz.Imię, gracz2.Imię));
+            }
         }
     }
 }
