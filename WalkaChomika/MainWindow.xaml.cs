@@ -59,7 +59,12 @@ namespace WalkaChomika
             else
                 Tura(gracz2, gracz1);
 
-            PokażStan();            
+            PokażStan();
+
+            if (!gracz1.CzyŻyje() || !gracz2.CzyŻyje())
+            {
+                btnNextTurn.IsEnabled = false;
+            }
 
             _lastGracz = !_lastGracz;
         }

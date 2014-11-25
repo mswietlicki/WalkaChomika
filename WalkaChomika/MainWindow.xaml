@@ -11,7 +11,7 @@
         <TextBox Grid.Column="0" x:Name="tbLog" FontFamily="Lucida Console" FontSize="14" Margin="5" AcceptsReturn="True" TextAlignment="Left" IsReadOnly="True" />
 
         <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch">
-            <Button Content="Następna tura" Margin="10" Click="NextTurnClick" />
+            <Button Content="Następna tura" Margin="10" Click="NextTurnClick" x:Name="btnNextTurn" />
         </StackPanel>
 
     </Grid>
