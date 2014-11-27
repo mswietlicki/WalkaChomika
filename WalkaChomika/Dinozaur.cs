@@ -16,11 +16,10 @@ namespace WalkaChomika
         /// wartości HP i obrazeń
         /// </summary>
         /// <param name="imię">Imię stworzenia</param>
-        public Dinozaur(string imię)
+        public Dinozaur(string imię) : base(imię)
         {
             this.HP = 100000;
             this.Damage = 150;
-            this.Imię = imię;
         }
     }
 }

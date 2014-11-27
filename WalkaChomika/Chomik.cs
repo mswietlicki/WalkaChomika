@@ -16,9 +16,9 @@ namespace WalkaChomika
         /// więc nie da się stworzyć go bez imienia
         /// </summary>
         /// <param name="imię">Imię chomika</param>
-        public Chomik(string imię)
+        public Chomik(string imię) : base(imię)
         {
-            this.Imię = imię;
+            
         }
     }
 }

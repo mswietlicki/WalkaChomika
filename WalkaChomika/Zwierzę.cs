@@ -33,20 +33,18 @@ namespace WalkaChomika
         /// </summary>
         public int Damage { get; protected set; }
 
+        public int Agility { get; set; }
+
         public Zwierzę()
         {
             this.HP = 10;
             this.Mana = 0;
             this.Damage = 5;
-            this.Imię = "BRAK!";
+            this.Agility = 0;     
         }
 
-        public Zwierzę(string imię)
+        public Zwierzę(string imię) : this()
         {
-            this.HP = 10;
-            this.Mana = 0;
-            this.Damage = 5;
-
             this.Imię = imię;
         }
 
@@ -68,14 +66,18 @@ namespace WalkaChomika
         /// </summary>
         /// <param name="z">Zwierzę do zaatakowania</param>
         public void Gryź(Zwierzę z)
-        {
-            // tworzenie generatora liczb losowych
+        {         
             Random r = new Random();
-            // losuje liczbę z zakresu od 0 do maksymalnego ataku obecnego obiektu
-            var moc = r.Next(this.Damage);
+            if (r.Next(5) >= z.Agility)
+            {
+                var moc = r.Next(this.Damage);
+                z.HP = z.HP - moc;
+            }
+        }
 
-            // zwierzęciu przekazanemu jako parametr odejmuje od punktów HP tyle, ile wyniosła moc ataku
-            z.HP = z.HP - moc;
+        public override string ToString()
+        {
+            return string.Format("{0} {1}HP {2}Mana {3}", Imię, HP, Mana, CzyŻyje());
         }
     }
 }
