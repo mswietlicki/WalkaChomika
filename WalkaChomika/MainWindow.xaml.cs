@@ -69,6 +69,9 @@ namespace WalkaChomika
             _lastGracz = !_lastGracz;
         }
 
+        /// <summary>
+        /// Pokazywanie stanu gracza - czy żyje, czy nie, jakie ma statystyki
+        /// </summary>
         private void PokażStan()
         {
             if (!gracz1.CzyŻyje() || !gracz2.CzyŻyje())
@@ -84,6 +87,11 @@ namespace WalkaChomika
             scroll.ScrollToBottom();
         }
 
+        /// <summary>
+        /// Obsługa kolejnej tury - gracz atakuje gracz2, losując typ ataku w zależności od jego umiejętności
+        /// </summary>
+        /// <param name="gracz">Gracz atakujący</param>
+        /// <param name="gracz2">Gracz atakowany</param>
         private void Tura(Zwierzę gracz, Zwierzę gracz2)
         {
             Random r = new Random();
@@ -92,6 +100,7 @@ namespace WalkaChomika
 
             if (gracz is ZwierzęMagiczne)
             {
+                // 30% szans na atak magiczny
                 if (w >= 7)
                 {
                     (gracz as ZwierzęMagiczne).AtakujMagicznie(gracz2);
@@ -102,6 +111,7 @@ namespace WalkaChomika
 
             if (gracz is ILatający)
             {
+                // 20% szans na odlot
                 if (w >= 8 && !zaatakował)
                 {
                     (gracz as ILatający).Lataj();
@@ -110,6 +120,7 @@ namespace WalkaChomika
                 }
             }
 
+            // jeżeli nie zaatakował wcześniej w inny sposób, to po prostu gryzie
             if (!zaatakował)
             {
                 gracz.Gryź(gracz2);

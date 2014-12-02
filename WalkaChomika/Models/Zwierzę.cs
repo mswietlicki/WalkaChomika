@@ -75,9 +75,13 @@ namespace WalkaChomika
             }
         }
 
+        /// <summary>
+        /// Wywołanie ToString na zwierzęciu będzie uruchamiało własną funkcję, zamiast wbudowanej
+        /// </summary>
+        /// <returns>Zwierzę będzie po przekształceniu do stringa zwracało swój stan</returns>
         public override string ToString()
         {
-            return string.Format("{0} {1}HP {2}Mana {3}", Imię, HP, Mana, CzyŻyje());
+            return string.Format("{0} {1}HP {2}Mana {3}", Imię, HP, Mana, CzyŻyje() ? "Żywe" : "RIP");
         }
     }
 }
