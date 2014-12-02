@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\ArmiaChomików.cs" />
     <Compile Include="Models\ChomikSzaman.cs" />
     <Compile Include="Models\ILatający.cs" />
     <Compile Include="Models\Jednorożec.cs" />

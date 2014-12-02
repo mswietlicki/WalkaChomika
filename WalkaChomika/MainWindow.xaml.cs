@@ -41,7 +41,8 @@ namespace WalkaChomika
             Debug.Listeners.Add(debugListener);
 
             // tworzone są nowe instancje walczących zwierzątek
-            gracz1 = new ChomikSzaman("Pimpuś", 100);
+            //gracz1 = new ChomikSzaman("Pimpuś", 100);
+            gracz1 = new ArmiaChomików(300);
             gracz2 = new Jednorożec("Rafał", 15);
         }
 
