@@ -20,9 +20,13 @@ namespace WalkaChomika.Models
         /// </summary>
         public string Imię { get; set; }
 
-        private int _HP;
         /// <summary>
-        /// To pole jest liczbą, która reprezentuje ile zwierzę ma punktów życia
+        /// Prywatne pole odpowiadające właściwości HP - ręczna implementacja getterów i setterów
+        /// </summary>
+        private int _HP;
+
+        /// <summary>
+        /// Ta właściwość reprezentuje ilość punktów życia zwierzęcia
         /// </summary>
         public virtual int HP
         {
@@ -32,8 +36,11 @@ namespace WalkaChomika.Models
             }
 
             set
-            {
+            {                
                 this._HP = value;
+
+                // jeśli HP jest mniejsze od 0 i ktokolwiek subskrybuje zdarzenie
+                // to odpalamy zdarzenie Zmarł
                 if (this._HP < 0 && Zmarł != null)
                     Zmarł.Invoke(this);
             }
@@ -49,10 +56,19 @@ namespace WalkaChomika.Models
         /// </summary>
         public int Damage { get; protected set; }
 
+        /// <summary>
+        /// Zwinność zwierzęcia
+        /// </summary>
         public int Agility { get; set; }
 
+        /// <summary>
+        /// Zdarzenie, które wywołuje się, kiedy zwierzę zmarło
+        /// </summary>
         public event ZwierzęMartwe Zmarł;
 
+        /// <summary>
+        /// Podstawowy kontruktor ustawiający bazowe właściwości
+        /// </summary>
         public Zwierzę()
         {
             this.HP = 10;
@@ -61,6 +77,10 @@ namespace WalkaChomika.Models
             this.Agility = 0;     
         }
 
+        /// <summary>
+        /// Konstruktor, który ustawia dodatkowo imię
+        /// </summary>
+        /// <param name="imię">Imię, które zostanie nadane zwierzęciu</param>
         public Zwierzę(string imię) : this()
         {
             this.Imię = imię;

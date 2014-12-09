@@ -45,12 +45,30 @@ namespace WalkaChomika
             gracz1 = new ArmiaChomików(300);
             gracz2 = new Jednorożec("Rafał", 15);
 
+            // subskrybujemy zdarzenie Zmarł - kiedy jednorożec padnie,
+            // będziemy pokazywać komunikat
+            // tutaj użyta jest wersja z funkcją anonimową
             gracz2.Zmarł += (sender) =>
             {
                 MessageBox.Show(string.Format("{0} nie żyje!", sender.Imię));
             };
+
+            // wersja alternatywna - z oddzielną funkcją obsługującą zdarzenie
+            gracz2.Zmarł += Gracz2_Zmarł;
         }
 
+        /// <summary>
+        /// Funkcja obsługująca zdarzenie śmierci jednego z graczy
+        /// </summary>
+        /// <param name="sender">Obiekt, który wysłał zdarzenie Zmarł</param>
+        private void Gracz2_Zmarł(Zwierzę sender)
+        {
+            MessageBox.Show(string.Format("{0} nie żyje!", sender.Imię));
+        }
+
+        /// <summary>
+        /// Definiuje, czy ostatnią turę miał gracz1, czy gracz2
+        /// </summary>
         private bool _lastGracz = false;
 
         /// <summary>
