@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WalkaChomika
+namespace WalkaChomika.Models
 {
+    delegate void ZwierzęMartwe(Zwierzę sender);
+
     /// <summary>
     /// Klasa Zwierzę, reprezentująca zwierzę bojowe
     /// </summary>
@@ -18,10 +20,24 @@ namespace WalkaChomika
         /// </summary>
         public string Imię { get; set; }
 
+        private int _HP;
         /// <summary>
         /// To pole jest liczbą, która reprezentuje ile zwierzę ma punktów życia
         /// </summary>
-        public virtual int HP { get; set; }
+        public virtual int HP
+        {
+            get
+            {
+                return this._HP;
+            }
+
+            set
+            {
+                this._HP = value;
+                if (this._HP < 0 && Zmarł != null)
+                    Zmarł.Invoke(this);
+            }
+        }
 
         /// <summary>
         /// To pole reprezentuje ilość many zwierzęcia
@@ -34,6 +50,8 @@ namespace WalkaChomika
         public int Damage { get; protected set; }
 
         public int Agility { get; set; }
+
+        public event ZwierzęMartwe Zmarł;
 
         public Zwierzę()
         {
