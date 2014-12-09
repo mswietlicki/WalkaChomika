@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WalkaChomika.Models
 {
-
     /// <summary>
     /// Definicja nowego zawodnika - Armii Chomików
     /// </summary>
@@ -30,8 +27,8 @@ namespace WalkaChomika.Models
                 {
                     h += c.HP;
                 }
-                
-                return h;                
+
+                return h;
             }
 
             set
@@ -92,7 +89,7 @@ namespace WalkaChomika.Models
         /// <returns>Zwraca, czy istnieje przynajmniej jeden chomik w armii.</returns>
         public override bool CzyŻyje()
         {
-            return (chomiki.Count > 0);              
+            return (chomiki.Count > 0);
         }
 
         /// <summary>

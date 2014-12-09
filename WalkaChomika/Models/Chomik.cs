@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WalkaChomika.Models
+﻿namespace WalkaChomika.Models
 {
     /// <summary>
     /// Klasa Chomik, dziedzicząca po Zwierzę
@@ -18,7 +12,7 @@ namespace WalkaChomika.Models
         /// <param name="imię">Imię chomika</param>
         public Chomik(string imię) : base(imię)
         {
-            
+
         }
     }
 }

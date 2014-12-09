@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WalkaChomika.Models
 {
@@ -16,7 +12,7 @@ namespace WalkaChomika.Models
         /// </summary>
         public ZwierzęMagiczne() : base()
         {
-            
+
         }
 
         /// <summary>
@@ -28,7 +24,7 @@ namespace WalkaChomika.Models
         {
             this.Mana = mana;
         }
-        
+
         /// <summary>
         /// Funkcja ataku magicznego, jest prawie analogiczna do funkcji
         /// Gryzienia, ale ma o wiele większą moc

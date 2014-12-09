@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WalkaChomika.Models
+﻿namespace WalkaChomika.Models
 {
     /// <summary>
     /// Jednorożec jest zarówno magiczny, jak i latający
@@ -25,9 +19,9 @@ namespace WalkaChomika.Models
         /// </summary>
         /// <param name="imię">Imię dla jednorożca</param>
         /// <param name="mana">Bazowa ilość many</param>
-        public Jednorożec(string imię, int mana) : base (imię, mana)
+        public Jednorożec(string imię, int mana) : base(imię, mana)
         {
-            this.HP = 1000;           
+            this.HP = 1000;
         }
 
         /// <summary>

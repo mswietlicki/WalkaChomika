@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WalkaChomika.Models
 {
+    /// <summary>
+    /// Delegat definiujący funkcję obsługującą zdarzenie śmierci zwierzęta
+    /// </summary>
+    /// <param name="sender"></param>
     delegate void ZwierzęMartwe(Zwierzę sender);
 
     /// <summary>
@@ -36,7 +36,7 @@ namespace WalkaChomika.Models
             }
 
             set
-            {                
+            {
                 this._HP = value;
 
                 // jeśli HP jest mniejsze od 0 i ktokolwiek subskrybuje zdarzenie
@@ -74,7 +74,7 @@ namespace WalkaChomika.Models
             this.HP = 10;
             this.Mana = 0;
             this.Damage = 5;
-            this.Agility = 0;     
+            this.Agility = 0;
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace WalkaChomika.Models
         /// </summary>
         /// <param name="z">Zwierzę do zaatakowania</param>
         public virtual void Gryź(Zwierzę z)
-        {         
+        {
             Random r = new Random();
             if (r.Next(5) >= z.Agility)
             {
