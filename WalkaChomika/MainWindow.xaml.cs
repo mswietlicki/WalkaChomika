@@ -44,6 +44,11 @@ namespace WalkaChomika
             //gracz1 = new ChomikSzaman("Pimpuś", 100);
             gracz1 = new ArmiaChomików(300);
             gracz2 = new Jednorożec("Rafał", 15);
+
+            gracz2.Zmarł += (sender) =>
+            {
+                MessageBox.Show(string.Format("{0} nie żyje!", sender.Imię));
+            };
         }
 
         private bool _lastGracz = false;
@@ -128,5 +133,7 @@ namespace WalkaChomika
                 Debug.WriteLine(string.Format("{0} ugryzł {1}!", gracz.Imię, gracz2.Imię));
             }
         }
+
+       
     }
 }
