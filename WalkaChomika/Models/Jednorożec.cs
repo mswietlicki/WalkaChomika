@@ -3,14 +3,13 @@
     /// <summary>
     /// Jednorożec jest zarówno magiczny, jak i latający
     /// </summary>
-    class Jednorożec : ZwierzęMagiczne, ILatający
+    public class Jednorożec : ZwierzęMagiczne, ILatający
     {
         /// <summary>
         /// Bazowy konstruktor
         /// </summary>
-        public Jednorożec() : base()
+        public Jednorożec()
         {
-
         }
 
         /// <summary>

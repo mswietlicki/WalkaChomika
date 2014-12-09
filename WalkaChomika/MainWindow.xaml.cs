@@ -42,7 +42,7 @@ namespace WalkaChomika
             Debug.Listeners.Add(debugListener);
 
             // tworzone są nowe instancje walczących zwierzątek
-            //gracz1 = new ChomikSzaman("Pimpuś", 100);
+            ////gracz1 = new ChomikSzaman("Pimpuś", 100);
             gracz1 = new ArmiaChomików(300);
             gracz2 = new Jednorożec("Rafał", 15);
 
@@ -68,9 +68,9 @@ namespace WalkaChomika
         }
 
         /// <summary>
-        /// Definiuje, czy ostatnią turę miał gracz1, czy gracz2
+        /// Definiuje, czy ostatnią turę miał gracz1, czy graczDrugi
         /// </summary>
-        private bool _lastGracz = false;
+        private bool _lastGracz;
 
         /// <summary>
         /// Funkcja obsługująca naciśnięcie przycisku Następnej Tury
@@ -105,19 +105,19 @@ namespace WalkaChomika
             }
             else
             {
-                Debug.WriteLine(string.Format("Gracz 1: {0}", gracz1));
-                Debug.WriteLine(string.Format("Gracz 2: {0}", gracz2));
+                Debug.WriteLine("Gracz 1: {0}", gracz1);
+                Debug.WriteLine("Gracz 2: {0}", gracz2);
             }
 
             scroll.ScrollToBottom();
         }
 
         /// <summary>
-        /// Obsługa kolejnej tury - gracz atakuje gracz2, losując typ ataku w zależności od jego umiejętności
+        /// Obsługa kolejnej tury - gracz atakuje graczDrugi, losując typ ataku w zależności od jego umiejętności
         /// </summary>
         /// <param name="gracz">Gracz atakujący</param>
-        /// <param name="gracz2">Gracz atakowany</param>
-        private void Tura(Zwierzę gracz, Zwierzę gracz2)
+        /// <param name="graczDrugi">Gracz atakowany</param>
+        private void Tura(Zwierzę gracz, Zwierzę graczDrugi)
         {
             Random r = new Random();
             var w = r.Next(10);
@@ -128,8 +128,8 @@ namespace WalkaChomika
                 // 30% szans na atak magiczny
                 if (w >= 7)
                 {
-                    (gracz as ZwierzęMagiczne).AtakujMagicznie(gracz2);
-                    Debug.WriteLine(string.Format("{0} zaatakował magicznie {1}!", gracz.Imię, gracz2.Imię));
+                    (gracz as ZwierzęMagiczne).AtakujMagicznie(graczDrugi);
+                    Debug.WriteLine("{0} zaatakował magicznie {1}!", gracz.Imię, graczDrugi.Imię);
                     zaatakował = true;
                 }
             }
@@ -148,11 +148,9 @@ namespace WalkaChomika
             // jeżeli nie zaatakował wcześniej w inny sposób, to po prostu gryzie
             if (!zaatakował)
             {
-                gracz.Gryź(gracz2);
-                Debug.WriteLine(string.Format("{0} ugryzł {1}!", gracz.Imię, gracz2.Imię));
+                gracz.Gryź(graczDrugi);
+                Debug.WriteLine("{0} ugryzł {1}!", gracz.Imię, graczDrugi.Imię);
             }
         }
-
-
     }
 }

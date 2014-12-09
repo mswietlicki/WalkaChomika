@@ -5,13 +5,13 @@ namespace WalkaChomika.Models
     /// <summary>
     /// Delegat definiujący funkcję obsługującą zdarzenie śmierci zwierzęta
     /// </summary>
-    /// <param name="sender"></param>
-    delegate void ZwierzęMartwe(Zwierzę sender);
+    /// <param name="sender">Obiekt informujący o swojej śmierci</param>
+    public delegate void ZwierzęMartwe(Zwierzę sender);
 
     /// <summary>
     /// Klasa Zwierzę, reprezentująca zwierzę bojowe
     /// </summary>
-    class Zwierzę
+    public class Zwierzę
     {
         /// <summary>
         /// To jest tzw. właściwość. Powinno używać się właściwości zamiast pól, ale dlaczego, to już
@@ -23,25 +23,26 @@ namespace WalkaChomika.Models
         /// <summary>
         /// Prywatne pole odpowiadające właściwości HP - ręczna implementacja getterów i setterów
         /// </summary>
-        private int _HP;
+        private int _hp;
 
         /// <summary>
         /// Ta właściwość reprezentuje ilość punktów życia zwierzęcia
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public virtual int HP
         {
             get
             {
-                return this._HP;
+                return this._hp;
             }
 
             set
             {
-                this._HP = value;
+                this._hp = value;
 
                 // jeśli HP jest mniejsze od 0 i ktokolwiek subskrybuje zdarzenie
                 // to odpalamy zdarzenie Zmarł
-                if (this._HP < 0 && Zmarł != null)
+                if (this._hp < 0 && Zmarł != null)
                     Zmarł.Invoke(this);
             }
         }

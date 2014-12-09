@@ -7,7 +7,7 @@ namespace WalkaChomika.Models
     /// <summary>
     /// Definicja nowego zawodnika - Armii Chomików
     /// </summary>
-    class ArmiaChomików : Zwierzę
+    public class ArmiaChomików : Zwierzę
     {
         /// <summary>
         /// Wewnętrzna kolekcja, lista, zawierająca poszczególne Chomiki
@@ -89,7 +89,7 @@ namespace WalkaChomika.Models
         /// <returns>Zwraca, czy istnieje przynajmniej jeden chomik w armii.</returns>
         public override bool CzyŻyje()
         {
-            return (chomiki.Count > 0);
+            return chomiki.Count > 0;
         }
 
         /// <summary>

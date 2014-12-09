@@ -3,7 +3,7 @@
     /// <summary>
     /// Dinozaur, klasa dziedzicząca po Zwierzę
     /// </summary>
-    class Dinozaur : Zwierzę
+    public class Dinozaur : Zwierzę
     {
         /// <summary>
         /// Konstruktor, nadaje bazowe, bardzo duże,

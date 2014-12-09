@@ -3,7 +3,7 @@
     /// <summary>
     /// Klasa ChomikSzaman dziedziczy po ZwierzęciuMagicznym
     /// </summary>
-    class ChomikSzaman : ZwierzęMagiczne
+    public class ChomikSzaman : ZwierzęMagiczne
     {
         /// <summary>
         /// Bazowy konstruktor - nie istnieje konstruktor bez parametrów

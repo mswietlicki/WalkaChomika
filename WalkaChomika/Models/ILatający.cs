@@ -4,7 +4,7 @@
     /// Interfejs ILatający określa właściwości i metody, które będą posiadały
     /// wszystkie klasy go implementujące.
     /// </summary>
-    interface ILatający
+    public interface ILatający
     {
         /// <summary>
         /// Definiuje, czy obiekt aktualnie już lata
