@@ -9,7 +9,7 @@ namespace WalkaChomika.Models
     /// <summary>
     /// Klasa ChomikSzaman dziedziczy po ZwierzęciuMagicznym
     /// </summary>
-    class ChomikSzaman : ZwierzęMagiczne
+    public class ChomikSzaman : ZwierzęMagiczne
     {
         /// <summary>
         /// Bazowy konstruktor - nie istnieje konstruktor bez parametrów
@@ -17,7 +17,8 @@ namespace WalkaChomika.Models
         /// </summary>
         /// <param name="imię">Imię stworzenia</param>
         /// <param name="mana">Wartość many stworzenia</param>
-        public ChomikSzaman(string imię, int mana) : base(imię, mana)
+        public ChomikSzaman(string imię, int mana)
+            : base(imię, mana)
         {
             this.HP = this.HP * 100;
         }

@@ -9,14 +9,14 @@ namespace WalkaChomika.Models
     /// <summary>
     /// Klasa ZwierzęMagiczne dziedziczy po klasie Zwierzę
     /// </summary>
-    class ZwierzęMagiczne : Zwierzę
+    public class ZwierzęMagiczne : Zwierzę
     {
         /// <summary>
         /// Konstruktor, który ustawia wartości podstawowe
         /// </summary>
-        public ZwierzęMagiczne() : base()
+        public ZwierzęMagiczne()
+            : base()
         {
-            
         }
 
         /// <summary>
@@ -24,11 +24,12 @@ namespace WalkaChomika.Models
         /// </summary>
         /// <param name="imię">Imię stworzenia</param>
         /// <param name="mana">Ilość many stworzenia</param>
-        public ZwierzęMagiczne(string imię, int mana) : base(imię)
+        public ZwierzęMagiczne(string imię, int mana)
+            : base(imię)
         {
             this.Mana = mana;
         }
-        
+
         /// <summary>
         /// Funkcja ataku magicznego, jest prawie analogiczna do funkcji
         /// Gryzienia, ale ma o wiele większą moc
