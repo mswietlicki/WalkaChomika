@@ -11,7 +11,8 @@
         /// </summary>
         /// <param name="imię">Imię stworzenia</param>
         /// <param name="mana">Wartość many stworzenia</param>
-        public ChomikSzaman(string imię, int mana) : base(imię, mana)
+        public ChomikSzaman(string imię, int mana)
+            : base(imię, mana)
         {
             this.HP = this.HP * 100;
         }

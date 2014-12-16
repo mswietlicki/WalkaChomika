@@ -40,7 +40,7 @@ namespace Ktos.Common
         /// <param name="message">Debug message</param>
         public override void WriteLine(string message)
         {
-            this.Write(message + Environment.NewLine);
+            this.Write(message + Environment.NewLine);//
         }
     }
 }

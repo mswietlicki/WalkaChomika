@@ -1,0 +1,61 @@
+﻿<Page
+    x:Class="WalkaChomika.App.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WalkaChomika.App"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <local:JednostkaConverter x:Key="JednostkaConverter" />
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Assets/JingJing.ttf#Jing Jing" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+
+        <Style TargetType="Button" x:Key="ButtonStyle">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+        </Style>
+
+        <SolidColorBrush Color="#123456" x:Key="ColorMegaUltra" />
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Image Source="Assets/Background.jpg" Stretch="UniformToFill" />
+        <Rectangle Fill="Black" Opacity="0.5" />
+
+        <Grid Margin="48">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding StatusMessage}" Grid.Column="0" Grid.ColumnSpan="3" TextAlignment="Center" FontSize="32" Foreground="{StaticResource ColorMegaUltra}" />
+
+            <StackPanel Background="LightSeaGreen" Grid.Column="0" VerticalAlignment="Center">
+                <TextBox Text="{Binding Gracz1Imię, Mode=TwoWay}" FontSize="32" Foreground="White" Background="Transparent" />
+                <TextBlock Text="{Binding Gracz1.Imię}" TextAlignment="Right" FontSize="32" />
+                <TextBlock Text="{Binding Gracz1.HP, Converter={StaticResource JednostkaConverter}, ConverterParameter='\{0\} HP'}" FontSize="32" />
+                <TextBlock Text="{Binding Gracz1.Mana, Converter={StaticResource JednostkaConverter}, ConverterParameter='\{0\} Mana'}" FontSize="32" />
+            </StackPanel>
+
+            <Button Style="{StaticResource ButtonStyle}" Grid.Column="1" Visibility="Collapsed" x:Name="NextTurnButton" Click="NextTurnButton_Click">
+                <Grid>
+                    <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="White" TextAlignment="Center" FontFamily="Assets/JingJing.ttf#Jing Jing" Text="Tura" />
+                    <Image Source="Assets/NextTurnIcon.png" Stretch="Uniform" />
+                </Grid>
+            </Button>
+
+            <Button VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Grid.Column="1" FontFamily="Assets/JingJing.ttf#Jing Jing"  Content="Nowa&#x0a;gra" HorizontalContentAlignment="Center" Visibility="Visible" x:Name="ResetGameButton" Click="ResetGameButton_Click" />
+
+            <StackPanel Background="IndianRed" Grid.Column="2" VerticalAlignment="Center">
+                <TextBox Text="{Binding Gracz2Imię, Mode=TwoWay}" FontSize="32" Foreground="White" Background="Transparent" />
+                <TextBlock Text="{Binding Gracz2.Imię}" TextAlignment="Right" FontSize="32" Foreground="White" FontFamily="Assets/JingJing.ttf#Jing Jing" />
+                <TextBlock Text="{Binding Gracz2.HP, Converter={StaticResource JednostkaConverter}, ConverterParameter='\{0\} HP'}" TextAlignment="Right" FontSize="32" Foreground="White" FontFamily="Assets/JingJing.ttf#Jing Jing" />
+                <TextBlock Text="{Binding Gracz2.Mana, Converter={StaticResource JednostkaConverter}, ConverterParameter='\{0\} Mana'}" TextAlignment="Right" FontSize="32" Foreground="White" FontFamily="Assets/JingJing.ttf#Jing Jing" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

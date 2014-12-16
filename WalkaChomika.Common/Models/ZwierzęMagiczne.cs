@@ -10,7 +10,8 @@ namespace WalkaChomika.Models
         /// <summary>
         /// Konstruktor, który ustawia wartości podstawowe
         /// </summary>
-        public ZwierzęMagiczne() : base()
+        public ZwierzęMagiczne()
+            : base()
         {
         }
 
@@ -19,7 +20,8 @@ namespace WalkaChomika.Models
         /// </summary>
         /// <param name="imię">Imię stworzenia</param>
         /// <param name="mana">Ilość many stworzenia</param>
-        public ZwierzęMagiczne(string imię, int mana) : base(imię)
+        public ZwierzęMagiczne(string imię, int mana)
+            : base(imię)
         {
             this.Mana = mana;
         }
