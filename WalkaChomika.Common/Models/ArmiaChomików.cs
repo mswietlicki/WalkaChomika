@@ -50,6 +50,7 @@ namespace WalkaChomika.Models
                     c.HP -= value;
                     if (c.HP < 0)
                         chomiki.Remove(c);
+                    OnPropertyChanged("HP");
                 }
             }
         }
@@ -61,6 +62,21 @@ namespace WalkaChomika.Models
         public Chomik NajsłabszyChomik()
         {
             return chomiki.OrderBy(x => x.HP).First();
+        }
+
+        public ArmiaChomików(int ilość, string imie)
+            : base(imie)
+        {
+            chomiki = new List<Chomik>();
+
+            var r = new Random();
+
+            for (int i = 0; i < ilość; i++)
+            {
+                var c = new Chomik("Chomik " + i);
+                c.HP = r.Next(10) + 1;
+                chomiki.Add(c);
+            }
         }
 
         /// <summary>
@@ -89,8 +105,7 @@ namespace WalkaChomika.Models
         /// <returns>Zwraca, czy istnieje przynajmniej jeden chomik w armii.</returns>
         public override bool CzyŻyje()
         {
-            return chomiki.Count > 0;
-        }
+            return chomiki.Count > 0;        }
 
         /// <summary>
         /// Własna implementacja dla ataku - atakują przeciwnika wszystkie chomiki

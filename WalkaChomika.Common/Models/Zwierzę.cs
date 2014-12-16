@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace WalkaChomika.Models
 {
@@ -11,14 +16,27 @@ namespace WalkaChomika.Models
     /// <summary>
     /// Klasa Zwierzę, reprezentująca zwierzę bojowe
     /// </summary>
-    public class Zwierzę
+    public class Zwierzę : INotifyPropertyChanged
     {
         /// <summary>
         /// To jest tzw. właściwość. Powinno używać się właściwości zamiast pól, ale dlaczego, to już
         /// kwestia nieco bardziej zaawansowana, więc chwilowo ją pominiemy. To konkretne pole reprezentuje
         /// imię zwierzęcia.
         /// </summary>
-        public string Imię { get; set; }
+        private String imię;
+
+        public String Imię
+        {
+            get { return imię; }
+            set
+            {
+                if (this.imię != value)
+                {
+                    imię = value;
+                    OnPropertyChanged("Imię");
+                }
+            }
+        }
 
         /// <summary>
         /// Prywatne pole odpowiadające właściwości HP - ręczna implementacja getterów i setterów
@@ -38,7 +56,11 @@ namespace WalkaChomika.Models
 
             set
             {
-                this._hp = value;
+                if (this._hp != value)
+                {
+                    _hp = value;
+                    OnPropertyChanged("HP");
+                }
 
                 // jeśli HP jest mniejsze od 0 i ktokolwiek subskrybuje zdarzenie
                 // to odpalamy zdarzenie Zmarł
@@ -50,7 +72,20 @@ namespace WalkaChomika.Models
         /// <summary>
         /// To pole reprezentuje ilość many zwierzęcia
         /// </summary>
-        public int Mana { get; set; }
+        private int mana;
+
+        public virtual int Mana
+        {
+            get { return mana; }
+            set
+            {
+                if (this.mana != value)
+                {
+                    mana = value;
+                    OnPropertyChanged("Mana");
+                }
+            }
+        }
 
         /// <summary>
         /// To pole reprezentuje maksymalne obrażenia zadawane przez atak
@@ -121,6 +156,14 @@ namespace WalkaChomika.Models
         public override string ToString()
         {
             return string.Format("{0} {1}HP {2}Mana {3}", Imię, HP, Mana, CzyŻyje() ? "Żywe" : "RIP");
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
     }
 }
