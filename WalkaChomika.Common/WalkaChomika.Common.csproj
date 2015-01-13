@@ -41,6 +41,7 @@
     <Compile Include="Models\Chomik.cs" />
     <Compile Include="Models\ChomikSzaman.cs" />
     <Compile Include="Models\Dinozaur.cs" />
+    <Compile Include="Models\HorseCannotIntoSkyException.cs" />
     <Compile Include="Models\ILatający.cs" />
     <Compile Include="Models\Jednorożec.cs" />
     <Compile Include="Models\Zwierzę.cs" />
