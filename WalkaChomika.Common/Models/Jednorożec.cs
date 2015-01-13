@@ -1,4 +1,6 @@
-﻿namespace WalkaChomika.Models
+﻿using WalkaChomika.Common.Models;
+
+namespace WalkaChomika.Models
 {
     /// <summary>
     /// Jednorożec jest zarówno magiczny, jak i latający
@@ -40,6 +42,9 @@
                 this.Agility += 1;
                 this.Damage += 10;
             }
+
+            if (this.HP < 10)
+                throw new HorseCannotIntoSkyException();
         }
     }
 }

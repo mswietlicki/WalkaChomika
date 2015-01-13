@@ -32,6 +32,9 @@ namespace WalkaChomika.Models
             {
                 if (this.imię != value)
                 {
+                    if (String.IsNullOrEmpty(value))
+                        throw new ArgumentException("Imię nie może być puste!");
+
                     imię = value;
                     OnPropertyChanged("Imię");
                 }

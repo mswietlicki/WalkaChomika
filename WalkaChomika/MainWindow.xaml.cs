@@ -15,7 +15,9 @@
 
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
+using WalkaChomika.Common.Models;
 using WalkaChomika.Models;
 
 namespace WalkaChomika
@@ -139,9 +141,19 @@ namespace WalkaChomika
                 // 20% szans na odlot
                 if (w >= 8 && !zaatakował)
                 {
-                    (gracz as ILatający).Lataj();
-                    Debug.WriteLine(string.Format("{0} odleciał!", gracz.Imię));
-                    zaatakował = true;
+                    try
+                    {
+                        (gracz as ILatający).Lataj();
+                        Debug.WriteLine(string.Format("{0} odleciał!", gracz.Imię));
+                    }
+                    catch (HorseCannotIntoSkyException) // jeżeli wystąpił wyjątek, że koń nie może polecieć
+                    {
+                        Debug.WriteLine("Koń za słaby, aby latać!"); // pokazujemy komunikat
+                    }
+                    finally
+                    {
+                        zaatakował = true; // niezależnie, czy poleciał, czy nie, uznajemy, że jego tura się kończy
+                    }
                 }
             }
 
@@ -150,6 +162,33 @@ namespace WalkaChomika
             {
                 gracz.Gryź(graczDrugi);
                 Debug.WriteLine("{0} ugryzł {1}!", gracz.Imię, graczDrugi.Imię);
+            }
+        }
+
+        private void TextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                try
+                {
+                    gracz2.Imię = ((System.Windows.Controls.TextBox)sender).Text;
+                }
+                catch (ArgumentException)
+                {
+                    MessageBox.Show("Imię złe!");
+                }
+            }
+        }
+
+        private void SaveFileClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                File.WriteAllText("log.txt", tbLog.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd zapisu: " + ex.Message);
             }
         }
     }
